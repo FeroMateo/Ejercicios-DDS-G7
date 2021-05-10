@@ -6,13 +6,12 @@ public class Envio
     private Transportista unTransportista;
     private Ubicacion partida;
     private Ubicacion destino;
-/*
+
     public Double costo()
     {
-        //Return -> ??
-        return
+       return unTransportista.costo(this);
     }
- */
+
     public void cambiarTransportista(Transportista trans)
         {
             unTransportista = trans;

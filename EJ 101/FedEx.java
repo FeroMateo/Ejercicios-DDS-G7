@@ -2,9 +2,9 @@ package domain;
 
 public class FedEx implements Transportista
 {
-    private int ConstanteEnvio;
+    private int tarifaPorPeso;
 
     public Double costo(Envio envio) {
-        return envio.peso()*ConstanteEnvio;
+        return envio.peso()*tarifaPorPeso;
     }
 }

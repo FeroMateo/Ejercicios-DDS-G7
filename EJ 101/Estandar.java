@@ -6,9 +6,21 @@ interface Transportista
 }
 
 public class Estandar implements Transportista {
+    private int tarifaPorPeso;
+    private int tarifaLargaDistancia;
+
 
     public Double costo(Envio envio) {
-        return envio.peso();
+
+        if (envio.esCortaDistancia())
+    {
+        return envio.peso()*tarifaPorPeso;
+    }else
+    {
+        return envio.peso()*tarifaLargaDistancia;
+    }
+
+
     }
 }
 
