@@ -1,17 +1,18 @@
 package domain;
 
-interface StrategyEnvios
+interface Transportista
 {
-    long calcularEnvio(long Peso, long ConstantePorPeso);
+     Double costo(Envio envio);
 }
 
-public class Estandar implements StrategyEnvios {
+public class Estandar implements Transportista {
 
-
-    public long calcularEnvio(long Peso, long ConstantePorPeso) {
-        return Peso*ConstantePorPeso;
+    public Double costo(Envio envio) {
+        return envio.peso();
     }
 }
+
+
 
 
 
