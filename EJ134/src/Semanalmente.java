@@ -1,18 +1,20 @@
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Calendar;
 
-public class Semanalmente implements Peridiocidad
+public class Semanalmente implements Periodicidad
 {
    public List<Date> fechasEntrega(Pedido pedidoCliente)
    {
 
        Date primerEntrega = pedidoCliente.fechaInicial;
-       List<Date> entregaSemanal;
-       for (int i = 0; i < pedidoCliente.cantEntregas; i++)
+       List<Date> entregaSemanal = new ArrayList<>();
+       for (int i = 1; i <= pedidoCliente.cantEntregas; i++)
        {
-           sumarDiasAFecha(primerEntrega,7);
-           entregaSemanal.add(primerEntrega);
+           Date fechaSiguiente = sumarDiasAFecha(primerEntrega,7 * i);
+           entregaSemanal.add(fechaSiguiente);
        }
        return entregaSemanal;
    }

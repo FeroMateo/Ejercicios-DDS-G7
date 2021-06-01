@@ -1,26 +1,17 @@
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class Mensualmente implements Peridiocidad
+public class Mensualmente implements Periodicidad
 {
-    public List<Date> fechasEntrega(Pedido pedidoCliente)
-    {
-        Date primerEntrega = pedidoCliente.fechaInicial;
-        List<Date> entregaMensual;
-        for (int i = 0; i < pedidoCliente.cantEntregas; i++)
-        {
-            sumarDiasAFecha(primerEntrega,7);
-            entregaMensual.add(primerEntrega);
-        }
-        return entregaMensual;
-    }
 
-    public static Date sumarDiasAFecha(Date fecha, int dias){
-        if (dias==0) return fecha;
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(fecha);
-        calendar.add(Calendar.DAY_OF_YEAR, dias);
-        return calendar.getTime();
+    @Override
+    public List<Date> fechasEntrega(Pedido pedidoCliente) {
+        //Aca iria la logica para poder devolver la lista de fechas
+        //Cada una con un mes de diferencia a partir de la primera
+        //Si utilizamos LocalDateTime es mas sencillo de resovler que con Date
+        return Arrays.asList();
     }
 }

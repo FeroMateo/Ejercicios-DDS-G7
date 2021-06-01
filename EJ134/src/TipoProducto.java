@@ -7,6 +7,7 @@ public class TipoProducto
 
     public Envase devolverEnvase()
     {
-        return envasesPosibles.stream().findFirst();
+        return envasesPosibles.stream().findFirst()
+                .orElseThrow(() -> new NoHayEnvasesException("El tipo de producto no tiene envases disponibles"));
     }
 }

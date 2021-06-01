@@ -1,9 +1,9 @@
 public class Item
 {
-    Producto producto;
-    Integer cantidad;
-    Double precio;
-    Envase envaseItem;
+    private Producto producto;
+    private Integer cantidad;
+    private Double precioUnitario;
+    private Envase envaseItem;
 
     public void elegirEnvase(Envase envase)
     {

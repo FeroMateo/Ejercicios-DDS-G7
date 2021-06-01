@@ -1,28 +1,33 @@
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class UICliente
 {
-    private String codCli;
-    private List<Pedido> pedidos;
 
-    public void nuevoPedido(String codCli, Date primerEntrega,Integer cantEntregas,Peridiocidad periodo)
+    public void nuevoPedido(String codCliente, Date fechaPrimerEntrega, Integer cantEntregas, Periodicidad periodicidad)
     {
-        Pedido ped = new Pedido(codCli,cantEntregas,periodo,primerEntrega);
-        List<Date> listaFechas = ped.calcularFechasDeEntrega();
-        listaFechas.forEach(fecha->this.nuevaEntrega(ped,fecha));
-        pedidos.add(ped);
-    }
-    public void nuevaEntrega(Pedido pedido,Date fecha)
-    {
-        List<Item> items;
-        //CICLO DE AGREGACION DE ITEMS
-        /*
-        itemNuevo = readLine(); "BarraAcero"
-        items.add(itemNuevo)
-        */
-        Entrega entre = new Entrega(fecha,items);
-        pedido.agregarEntrega(entre);
+        Pedido pedido = new Pedido(codCliente, cantEntregas, fechaPrimerEntrega);
+        PlanificadorEntregas planificadorEntregas = new PlanificadorEntregas(periodicidad, pedido);
+        List<Entrega> entregas = planificadorEntregas.calcularEntregas();
+
+        this.asignarArticulosAEntregas(entregas);
+
+        pedido.agregarEntregas(entregas);
+
+        this.mostrarPedido();
 
     }
+
+    private void mostrarPedido() {
+        //Ya finalizado el pedido podria mostrarselo al usuario para que lo corrobore
+        //Y finalmente muestra su identificador
+    }
+
+    private void asignarArticulosAEntregas(List<Entrega> entregas) {
+
+        //En esta parte el usuario debería poder visualizar las entregas
+        //Y para cada una de ellas ir agregando los articulos segun desee
+        //Esto incluye tolerancias, cantidades y envases
+
+    }
+
 }
