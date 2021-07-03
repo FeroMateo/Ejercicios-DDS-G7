@@ -3,6 +3,7 @@ import Bases.BaseSanitaria;
 
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public abstract class  Simple implements BaseSanitaria
 {
@@ -12,5 +13,7 @@ public abstract class  Simple implements BaseSanitaria
     private Double tiempoAsistencia;
 
     //@Override
-    //public Integer numeroAmbulancias(){ return this.ambulancias}
+    public Integer numeroAmbulancias(){ return this.ambulancias.size(); }
+
+    public Double tiempoAsistencia(){ return tiempoAsistencia;}
 }
