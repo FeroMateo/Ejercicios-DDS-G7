@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 
-public class Compuesta implements  BaseSanitaria{
+    public class Compuesta implements  BaseSanitaria{
 
     private String nombreBase;
     private Integer numeroAmbulancias;
@@ -23,60 +23,36 @@ public class Compuesta implements  BaseSanitaria{
         return numeroAmbulancias;
     }
 
-/*
+    public Integer retornarCantidadAmbulancias(BaseSanitaria base){
+    return base.numeroAmbulancias();
+}
+
     @Override
     public Integer numeroAmbulancias( ){
 
-        Integer cant;
+    Integer cant;
 
-        List<Integer> cantidadesDeAmbulanciasPorBase = this.bases
-                .stream()
-                .map(base-> {return base.numeroAmbulancias();})
-                .collect(Collectors.toList());
+    Integer cantidadesDeAmbulanciasPorBase = this.bases
+            .stream()
+            .mapToInt(base -> retornarCantidadAmbulancias(base))
+            .sum();
 
-        cant = cantidadesDeAmbulanciasPorBase.mapToInt(Integer::IntValue)
-                .sum();
-        return cant
+    return cantidadesDeAmbulanciasPorBase;
+
+}
+
+    public Double tiempoMedioPorBase(BaseSanitaria base){
+    return base.tiempoMedioDeAsistencia();
     }
-*/
-/*
-    @Override
-    public Integer numeroAmbulancias( ){
-
-        Integer cant;
-
-        List<Integer> cantidadesDeAmbulanciasPorBase = this.bases
-                .stream()
-                .map(base-> {return base.numeroAmbulancias();})
-                .collect(Collectors.toList());
-
-        cant = cantidadesDeAmbulanciasPorBase.mapToInt(Integer::IntValue)
-                .sum();
-        return cant;
-    }
-*/
-    @Override
-    public Integer numeroAmbulancias( ){
-
-
-
-        List<Integer> cantidadesDeAmbulanciasPorBase = this.bases
-                .stream()
-                .map(base-> {return base.numeroAmbulancias();})
-                .collect(Collectors.toList());
-
-        return cantidadesDeAmbulanciasPorBase.sum();
-    }
-   // tiempo medio de asistencia, que en el caso de las bases compuestas es la media de los tiempos
-   // medios de asistencia registrados en las bases que las componen en ese momento
 
     @Override
     public Double tiempoMedioDeAsistencia(){
-        List<Double> tiempoMedioDeAsistenciaPorBase = this.bases
+        Double tiempoMedioDeAsistenciaPorBase = this.bases
                 .stream()
-                .map(base-> {return base.tiempoMedioDeAsistencia();})
-                .collect(Collectors.toList());
+                .mapToDouble(base -> tiempoMedioPorBase(base))
+                .sum();
 
-        return tiempoMedioDeAsistenciaPorBase.sum() / tiempoMedioDeAsistenciaPorBase.size();
+
+        return tiempoMedioDeAsistenciaPorBase / bases.size();
     }
 }

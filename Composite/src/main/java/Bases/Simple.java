@@ -12,8 +12,8 @@ public abstract class  Simple implements BaseSanitaria
     private List<Ambulancia> ambulancias;
     private Double tiempoAsistencia;
 
-    //@Override
+    @Override
     public Integer numeroAmbulancias(){ return this.ambulancias.size(); }
-
-    public Double tiempoAsistencia(){ return tiempoAsistencia;}
+    @Override
+    public Double tiempoMedioDeAsistencia(){ return tiempoAsistencia;}
 }
